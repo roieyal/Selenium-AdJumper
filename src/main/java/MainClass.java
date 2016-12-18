@@ -1,9 +1,5 @@
 import common.BrowserType;
 import common.WebDriverFactory;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,23 +13,21 @@ import java.util.UUID;
 import static common.Utils.sleep;
 import static common.Utils.sleepRandom;
 
-
 /**
- * Created by eyal on 24/11/2016.
+ * Created by eyal on 18/12/2016.
  */
-@Ignore
-public class _DevTest {
+public class MainClass {
 
-    private WebDriver driver;
+    public static void main(String[] args) {
+
+        WebDriver driver;
 
     /* All the instances should be created here */
-    MainWindow mainWindow;
-    UUID uuid = UUID.randomUUID();
-    LoginArea loginArea;
-    PersonalAreaPage personalAreaPage;
+        MainWindow mainWindow;
+        UUID uuid = UUID.randomUUID();
+        LoginArea loginArea;
+        PersonalAreaPage personalAreaPage;
 
-    @Before
-    public void setup() {
         // browser definitions are set here
         System.setProperty("webdriver.chrome.driver", "C:\\_Dev\\chromedriver.exe");
         WebDriverFactory webDriverFactory = new WebDriverFactory();
@@ -43,10 +37,6 @@ public class _DevTest {
         mainWindow = new MainWindow(driver);
         loginArea = new LoginArea(driver);
         personalAreaPage = new PersonalAreaPage(driver);
-    }
-
-    @Test
-    public void chromeTest() {
 
         loginArea.selectUserEmailArea();
         loginArea.writeEmailInField("email");
@@ -64,23 +54,15 @@ public class _DevTest {
         personalAreaPage.clickHAKPATZA();
 
         if (personalAreaPage.checkIfHakpatzaEnabled()){
-            System.out.println("your add Hukpetza");
+            System.out.println("your ad Hukpetza");
         }
         else {
-            System.out.println("your add was probably Hukpetza!!!");
+            System.out.println("your ad was probably Hukpetza!!!");
         }
-
-    }
-
-    @Ignore
-    @Test
-    public void chromeTest2() {
-    }
-
-    @After
-    public void cleanup() {
         driver.close();
         driver.quit();
 
     }
+
 }
+

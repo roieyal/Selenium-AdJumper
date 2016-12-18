@@ -19,6 +19,7 @@ public class PersonalAreaPage {
 
     private static final By yad2Btn = By.xpath(".//*[@id=\"SearchButton\"]/table[2]/tbody/tr/td/table/tbody/tr[3]/td/table/tbody/tr[1]/td[3]/a/img");
     private static final By firstAdd = By.xpath("//*[@id=\"ActiveLink\"]/td[5]");
+    private static final By secondAdd = By.xpath("//*[@id=\"SearchButton\"]/table[4]/tbody/tr[1]/td[2]/table/tbody/tr[4]/td[5]");
     private static final By HakpatzaBtnNotEnabled = By.xpath(".//html/body/table/tbody/tr[3]/td/table/tbody/tr[2]/td/table/tbody/tr[1]/td[3]/img");
     private static final By HakpatzaBtn = By.xpath(".//html/body/table/tbody/tr[3]/td/table/tbody/tr[2]/td/table/tbody/tr[1]/td[3]/a");
 
