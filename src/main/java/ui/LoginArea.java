@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import static common.Utils.sleepRandom;
+
 /**
  * Created by eyal on 15/12/2016.
  */
@@ -65,5 +67,16 @@ public class LoginArea {
 
     public static By getLoginPassword() {
         return loginPassword;
+    }
+
+    public void logIn(String username, String password) {
+        selectUserEmailArea();
+        writeEmailInField(username);
+        sleepRandom();
+        selectUserPasswordArea();
+        writePassword(password);
+        sleepRandom();
+        clickLoginOkBtn();
+        sleepRandom();
     }
 }
