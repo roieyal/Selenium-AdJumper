@@ -4,9 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import ui.LoginArea;
 import ui.MainWindow;
 import ui.PersonalAreaPage;
@@ -14,14 +12,10 @@ import ui.PersonalAreaPage;
 import java.io.File;
 import java.util.UUID;
 
-import static common.Utils.sleep;
-import static common.Utils.sleepRandom;
-
 
 /**
  * Created by eyal on 24/11/2016.
  */
-@Ignore
 public class _DevTest {
 
     private WebDriver driver;
@@ -45,31 +39,13 @@ public class _DevTest {
         personalAreaPage = new PersonalAreaPage(driver);
     }
 
+    @Ignore
     @Test
-    public void chromeTest() {
+    public void jumpAllPersonalAdsTest() {
 
-        loginArea.selectUserEmailArea();
-        loginArea.writeEmailInField("email");
-        sleepRandom();
-        loginArea.selectUserPasswordArea();
-        loginArea.writePassword("password");
-        sleepRandom();
-        loginArea.clickLoginOkBtn();
-        sleep(5);
+        loginArea.logIn("username", "password");
         personalAreaPage.clickYad2Btn();
-        personalAreaPage.clickOnTheFirstAdd();
-        sleepRandom();
-        WebElement frame = driver.findElement(By.xpath("//*[@id=\"SearchButton\"]/table[4]/tbody/tr[1]/td[2]/table/tbody/tr[3]/td/table/tbody/tr/td[2]/iframe"));
-        driver.switchTo().frame(frame);
-        personalAreaPage.clickHAKPATZA();
-
-        if (personalAreaPage.checkIfHakpatzaEnabled()){
-            System.out.println("your add Hukpetza");
-        }
-        else {
-            System.out.println("your add was probably Hukpetza!!!");
-        }
-
+        personalAreaPage.jumpAllAds();
     }
 
     @Ignore

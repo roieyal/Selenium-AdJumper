@@ -17,9 +17,13 @@ public class Utils {
         }
     }
 
-    public static void sleepRandom(){
+    public static void sleepRandom() {
+        sleepRandom(1, 10);
+    }
+
+    public static void sleepRandom(int min, int max){
         try {
-            int randomNum = randInt(1, 10);
+            int randomNum = randInt(min, max);
             Thread.sleep(randomNum*1000);                 //x milliseconds is one second.
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
@@ -27,13 +31,7 @@ public class Utils {
     }
 
     public static int randInt(int min, int max) {
-        min = 1;
-        max = 10;
-        // Usually this can be a field rather than a method variable
         Random rand = new Random();
-
-        // nextInt is normally exclusive of the top value,
-        // so add 1 to make it inclusive
         int randomNum = rand.nextInt((max - min) + 1) + min;
 
         return randomNum;
