@@ -21,6 +21,7 @@ import static common.Utils.sleepRandom;
 /**
  * Created by eyal on 24/11/2016.
  */
+@Ignore
 public class _DevTest {
 
     private WebDriver driver;
