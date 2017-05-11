@@ -6,8 +6,9 @@ import ui.LoginArea;
 import ui.PersonalAreaPage;
 
 import java.io.File;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -21,7 +22,7 @@ public class MainClass {
         final String currentDir = System.getProperty("user.dir");
         final File windowsChromeDriver = new File("c:" + File.separator + "_Dev" + File.separator + "chromedriver.exe");
 //        final File linuxChromeDriver = new File(File.separator + "home" + File.separator + "evegenyz" + File.separator + "yad2" + File.separator + "chromedriver");
-        final File linuxChromeDriver = new File(currentDir + File.separator + "chromedriver");
+        final File linuxChromeDriver = new File("chromedriver");
         driver = webDriverFactory.createWebDriver(BrowserType.CHROME, linuxChromeDriver, null, null);
         driver.get("http://www.yad2.co.il/");
         return driver;
@@ -42,9 +43,11 @@ public class MainClass {
             personalAreaPage.jumpAllAds();
 
         } catch (Exception e) {
-            System.out.println((new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")).format(new Date()) + "ERROR in MainClass");
-            System.out.println(e.getMessage());
-            System.out.println(Arrays.toString(e.getStackTrace()));
+            System.out.println((new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")).format(new Date()) + " ERROR in MainClass");
+            System.out.println();
+            StringWriter errors = new StringWriter();
+            e.printStackTrace(new PrintWriter(errors));
+            System.out.println(errors.toString());
         } finally {
             if (driver != null) {
                 driver.close();
