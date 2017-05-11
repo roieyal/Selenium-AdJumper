@@ -1,10 +1,14 @@
 import common.BrowserType;
+import common.Utils;
 import common.WebDriverFactory;
 import org.openqa.selenium.WebDriver;
 import ui.LoginArea;
 import ui.PersonalAreaPage;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
 
 /**
  * Created by eyal on 18/12/2016.
@@ -14,23 +18,40 @@ public class MainClass {
     private static WebDriver createWebDriver() {
         WebDriver driver;
         WebDriverFactory webDriverFactory = new WebDriverFactory();
-        driver = webDriverFactory.createWebDriver(BrowserType.CHROME, new File("c:" + File.separator + "_Dev" + File.separator + "chromedriver.exe"), null, null);
+        final String currentDir = System.getProperty("user.dir");
+        final File windowsChromeDriver = new File("c:" + File.separator + "_Dev" + File.separator + "chromedriver.exe");
+//        final File linuxChromeDriver = new File(File.separator + "home" + File.separator + "evegenyz" + File.separator + "yad2" + File.separator + "chromedriver");
+        final File linuxChromeDriver = new File(currentDir + File.separator + "chromedriver");
+        driver = webDriverFactory.createWebDriver(BrowserType.CHROME, linuxChromeDriver, null, null);
         driver.get("http://www.yad2.co.il/");
         return driver;
     }
 
     public static void main(String[] args) {
 
-        WebDriver driver = createWebDriver();
-        LoginArea loginArea = new LoginArea(driver);
-        PersonalAreaPage personalAreaPage = new PersonalAreaPage(driver);
+        WebDriver driver = null;
+        try {
 
-        loginArea.logIn("johanzilber@gmail.com", "33469Fy4");
-        personalAreaPage.clickYad2Btn();
-        personalAreaPage.jumpAllAds();
+            driver = createWebDriver();
+            LoginArea loginArea = new LoginArea(driver);
+            PersonalAreaPage personalAreaPage = new PersonalAreaPage(driver);
 
-        driver.close();
-        driver.quit();
+            Utils.sleepRandom(5, 10);
+            loginArea.logIn("", "");
+            personalAreaPage.clickYad2Btn();
+            personalAreaPage.jumpAllAds();
+
+        } catch (Exception e) {
+            System.out.println((new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")).format(new Date()) + "ERROR in MainClass");
+            System.out.println(e.getMessage());
+            System.out.println(Arrays.toString(e.getStackTrace()));
+        } finally {
+            if (driver != null) {
+                driver.close();
+                driver.quit();
+            }
+        }
+
     }
 }
 
