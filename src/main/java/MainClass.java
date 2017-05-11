@@ -21,8 +21,7 @@ public class MainClass {
         WebDriverFactory webDriverFactory = new WebDriverFactory();
         final String currentDir = System.getProperty("user.dir");
         final File windowsChromeDriver = new File("c:" + File.separator + "_Dev" + File.separator + "chromedriver.exe");
-//        final File linuxChromeDriver = new File(File.separator + "home" + File.separator + "evegenyz" + File.separator + "yad2" + File.separator + "chromedriver");
-        final File linuxChromeDriver = new File("chromedriver");
+        final File linuxChromeDriver = new File(File.separator + "home" + File.separator + "evegenyz" + File.separator + "yad2" + File.separator + "chromedriver");
         driver = webDriverFactory.createWebDriver(BrowserType.CHROME, linuxChromeDriver, null, null);
         driver.get("http://www.yad2.co.il/");
         return driver;
